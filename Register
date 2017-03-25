@@ -1,0 +1,46 @@
+<?php
+session_set_cookie_params(0);
+session_start();
+
+$dsn = 'mysql:host=localhost;dbname=Users';
+$username = 'admin';
+$password = 'hello';
+
+// creates PDO object
+try {
+    $db = new PDO($dsn, $username, $password);
+} catch (PDOException $e) {
+    $error_message = $e->getMessage();
+    echo "<p>An error occurred while connecting to
+             the database: $error_message </p>";
+}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // username and password sent from Form
+    $username = mysql_real_escape_string($_POST['username']);
+    $password = mysql_real_escape_string($_POST['password']);
+    $email = mysql_real_escape_string($_POST['email']);
+    $firstName = mysql_real_escape_string($_POST['firstName']);
+    $lastName = mysql_real_escape_string($_POST['lastName']);
+    $query = 'INSERT INTO accounts
+          VALUES( :username,:password,:email,:firstName,:lastName';
+	$statement = $db->prepare($query);
+	$statement->bindValue(':username', $username);
+	$statement->bindValue(':password', $password);
+	$statement->bindValue(':email', $email);
+	$statement->bindValue(':firstName', $firstName);
+	$statement->bindValue(':lastName', $lastName);
+	$statement->execute();
+	$product = $statement->fetch();
+	$statement->closeCursor();
+	
+    // If result matched $username and $password, table row must be 1 row
+    if ($product) {
+        $_SESSION['log'] = $product['firstName']; // put session value here 
+        header('Location: index.php');
+    } else {
+        $error = "Your Login Name or Password is invalid";
+       include('store.html'); 
+        echo $error;
+    }
+}
+?>

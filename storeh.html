@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="main2.css">
+    <title>Store</title></head>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  	<link rel="stylesheet" href="/resources/demos/style.css">
+  	<script src="cart.js"></script>
+  	
+	<script>
+		$( function() {
+			$( "#tabs" ).tabs();
+		} );
+	</script>
+	<script>
+		var sum=function(x1,x2){
+			var total=x1+x2; 
+			var tax=x2*9/100;
+			total=total+tax;
+			return total.toFixed(2);}
+	</script>
+	<script>
+		var subtract=function(x1,x2){
+			if (x2=="poodle20"){
+				$("#discount").text(" Discount applied");
+				$("#apply").prop('disabled',true);
+				var total= x1-x1*20/100;
+				return total.toFixed(2);
+			}else{
+			$("#discount").text("  invalid promo code");
+			return x1;}
+		}
+	</script>
+	  <style>
+    fieldset {
+      border: 0;
+    }
+    label {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+	<header>
+		<ul>
+			<?php if(isset($_SESSION['log'])){?>
+		<li><a href="index.php?logout=true">logout</a></li>
+   <?php } ?>
+		  <li><a href="cart.php">Cart</a></li>
+		  <li><a href="shop.php">Store</a></li>
+		  <li><a href="gallery.html">Gallery</a></li>
+		  <li><a class="active" href="about4.html">About</a></li>
+		  <li><a href="index.php">Home</a></li>
+		  <li><img src="este.png" alt="Logo"></li>
+		</ul>
+		<h1 class="one">Store</h1>
+		<h3 style="float:right; border:2px dashed grey; margin-right:5%; padding: 1em;">Enter poodle20 at checkout for 20% off!</h3>
+	</header>
+	<main>
+		<div id="tabs">
+			<ul class="productCategories">
+				<li><a href="#tabs-1">Clothes</a></li>
+				<li><a href="#tabs-2">Beds</a></li>
+				<li><a href="#tabs-3">Miscellaneous</a></li>
+			</ul>
+
+			<div id="tabs-1">
+				<div class="img" id="item1">
+    				<img src="http://img.tjmaxx.com/tjx?set=DisplayName[e3],prd[1000140255_NS1003538],ag[no]&call=url[file:tjxrPRD2.chain]" alt="Pet Jacket">
+  				<div class="desc"><input type="hidden" id="price1" value="9.99"><p id="desc1">Pet Jacket<br>$9.99</p></input>
+  					<fieldset>
+  						<label for="size">size</label>
+    					<select name="size" id="size">
+      						<option selected="selected">x-small</option>
+     						<option>small</option>
+      						<option>Medium</option>
+    						<option>large</option>
+      						<option>x-large</option>
+    					</select>
+    				</fieldset>
+    				<button id="add1" type="button" onclick="total.value= sum(parseFloat(total.value),parseFloat(price1.value))">Add to Cart</button>
+  				</div>
+			</div>
+			
+				<div class="img" id="item2">
+    				<img src="http://img.tjmaxx.com/tjx?set=DisplayName[e3],prd[1000156192_NS1003495],ag[no]&call=url[file:tjxrPRD2.chain]" alt="Harness Vest">
+  				<div class="desc"><input type="hidden" id="price2" value="12.99"><p id="desc2"> Harness Vest<br>$12.99</p></input>
+  					<fieldset>
+  						<label for="size">size</label>
+    					<select name="size" id="size">
+      						<option selected="selected">x-small</option>
+     						<option>small</option>
+      						<option>Medium</option>
+    						<option>large</option>
+      						<option>x-large</option>
+    					</select>
+    				</fieldset>
+    				<button id="add2" type="button" onclick="total.value= sum(parseFloat(total.value),parseFloat(price2.value))">Add to Cart</button>
+  				</div>
+			</div>
+			<div class="img" id="item3">
+    				<img src="http://img.tjmaxx.com/tjx?set=DisplayName[e3],prd[1000140255_NS1442352],ag[no]&call=url[file:tjxrPRD2.chain]" alt="Reflective Jacket">
+  				<div class="desc"><input type="hidden" id="price3" value="9.99"><p id="desc3">Reflective Jacket<br>$9.99</p></input>
+  					<fieldset>
+  						<label for="size">size</label>
+    					<select name="size" id="size">
+      						<option selected="selected">x-small</option>
+     						<option>small</option>
+      						<option>Medium</option>
+    						<option>large</option>
+      						<option>x-large</option>
+    					</select>
+    				</fieldset>
+    				<button id="add3" type="button" onclick="total.value= sum(parseFloat(total.value),parseFloat(price3.value))">Add to Cart</button>
+  				</div>
+			</div>
+<div class="img" id="item4">
+    				<img src="http://img.tjmaxx.com/tjx?set=DisplayName[e3],prd[1000139870_NS1003495],ag[no]&call=url[file:tjxrPRD2.chain]" alt="Fur Jacket">
+  				<div class="desc"><input type="hidden" id="price4" value="9.99"><p id="desc4">Fur Jacket<br>$9.99</p></input>
+  					<fieldset>
+  						<label for="size">size</label>
+    					<select name="size" id="size">
+      						<option selected="selected">x-small</option>
+     						<option>small</option>
+      						<option>Medium</option>
+    						<option>large</option>
+      						<option>x-large</option>
+    					</select>
+    				</fieldset>
+    				<button id="add4" type="button" onclick="total.value= sum(parseFloat(total.value),parseFloat(price4.value))">Add to Cart</button>
+  				</div>
+			</div>
+
+			</div>
+			<div id="tabs-2">
+						<div class="img">
+    						<img src="http://img.tjmaxx.com/tjx?set=DisplayName[e3],prd[1000156154_NS1003462],ag[no]&call=url[file:tjxrPRD2.chain]" alt="Sofa Bed">
+  						<div class="desc"><input type="hidden" id="price5" value="16.99"><p id="desc5">Sofa Bed<br>$16.99</p></input>
+  						<button id="add5" type="button" onclick="total.value= sum(parseFloat(total.value),parseFloat(price5.value))">Add to Cart</button>
+  						</div>
+					</div>
+					
+					<div class="img">
+    						<img src="http://img.tjmaxx.com/tjx?set=DisplayName[e3],prd[1000089566_NS1003462],ag[no]&call=url[file:tjxrPRD2.chain]" alt="Memory Foam Bed">
+  						<div class="desc"> <input type="hidden" id="price6" value="49.99"><p id="desc6">Memory Foam Bed<br>$49.99</p></input>
+  						<button id="add6" type="button" onclick="total.value= sum(parseFloat(total.value),parseFloat(price6.value))">Add to Cart</button>
+  						</div>
+					</div>
+					<div class="img">
+    						<img src="http://img.tjmaxx.com/tjx?set=DisplayName[e3],prd[1000077530_NS1172809],ag[no]&call=url[file:tjxrPRD2.chain]" alt="Quilted Pillowtop">
+  						<div class="desc"> <input type="hidden" id="price7" value="49.99"><p id="desc7">Quilted Pillowtop<br>$49.99</p></input>
+  						<button id="add7" type="button" onclick="total.value= sum(parseFloat(total.value),parseFloat(price7.value))">Add to Cart</button>
+  						</div>
+					</div>
+
+			</div>
+			
+			<div id="tabs-3">
+						<div class="img">
+    						<img src="http://img.tjmaxx.com/tjx?set=DisplayName[e3],prd[1000152407_NS1325270],ag[no]&call=url[file:tjxrPRD2.chain]" alt="Dog Throw">
+  						<div class="desc"><input type="hidden" id="price9" value="16.99"><p id="desc9">Dog Throw<br>$16.99</p></input>
+  						<button id="add9" type="button" onclick="total.value= sum(parseFloat(total.value),parseFloat(price9.value))">Add to Cart</button>
+  						</div>
+					</div>
+					<div class="img">
+    						<img src="http://img.tjmaxx.com/tjx?set=DisplayName[e3],prd[1000156161_NS1003538],ag[no]&call=url[file:tjxrPRD2.chain]" alt="Memory Foam Bed">
+  						<div class="desc"><input type="hidden" id="price10" value="12.99"><p id="desc10">Grooming Kit<br>$12.99</p></input>
+  						<button id="add10" type="button" onclick="total.value= sum(parseFloat(total.value),parseFloat(price10.value))">Add to Cart</button>
+  						</div>
+					</div>	
+					<div class="img">
+    						<img src="http://img.tjmaxx.com/tjx?set=DisplayName[e3],prd[1000144256_NS1003549],ag[no]&call=url[file:tjxrPRD2.chain]" alt="3 Panel Gate">
+  						<div class="desc"><input type="hidden" id="price11" value="16.99"><p id="desc11">3 Panel Gate<br>$16.99</p></input>
+  						<button id="add11" type="button" onclick="total.value= sum(parseFloat(total.value),parseFloat(price11.value))">Add to Cart</button>
+  						</div>
+					</div>
+			</div>
+		</div>
+	</main>
+	<aside id="cart">
+		<h2>Cart</h2><br>
+		<p id="items"></p>
+		<form action="cart.php" method="POST">
+		<label style="display:inline-block;float:left;">$</label><input type="text" id="total" name= "total" value="0.00" readonly>
+		<input type="text" id="promo" value="Enter Promo Code">
+		<button type="button" id="apply" value="Apply" onclick="total.value= subtract(parseFloat(total.value),promo.value)">Apply</button><span id="discount"></span><br><br><br><br>
+		<input type="submit"  class="button button1" value="Checkout"></form>
+	</aside>
+	<footer><p id="copyright">&copy 2016 Karen Pelayes</p></footer>
+</body>
+</html>
